@@ -1,23 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from "react";
+import CommentCollection from "./components/CommentCollection";
+import "./App.css";
+
+const AppStyle = {
+  margin: "0px auto",
+  padding: "50px",
+};
 
 function App() {
+  let [visibility, setVisibility] = useState(false);
+
+  function hideComments() {
+    setVisibility(false);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div id="app" style={AppStyle}>
+      <button
+        className="border-0 bg-green-400 p-2 rounded shadow text-white"
+        onClick={() => setVisibility(!visibility)}
+      >
+        Show Comments
+      </button>
+      <CommentCollection
+        visibility={visibility}
+        hideComments={hideComments}
+      ></CommentCollection>
     </div>
   );
 }
