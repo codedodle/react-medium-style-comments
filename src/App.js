@@ -1,6 +1,10 @@
-import { useState, useEffect } from "react";
-import CommentCollection from "./components/CommentCollection";
+import { useState, lazy, Suspense } from "react";
+import { Provider } from "react-redux";
 import "./App.css";
+//import LoaderComment from "./components/loaders/LoaderComment";
+import CommentErrorBoundary from "./components/CommentErrorBoundary";
+import store from "./store/index";
+const CommentCollection = lazy(() => import("./components/CommentCollection"));
 
 const AppStyle = {
   margin: "0px auto",
@@ -22,10 +26,16 @@ function App() {
       >
         Show Comments
       </button>
-      <CommentCollection
-        visibility={visibility}
-        hideComments={hideComments}
-      ></CommentCollection>
+      <Suspense fallback={<div>Loading...</div>}>
+        <CommentErrorBoundary>
+          <Provider store={store}>
+            <CommentCollection
+              visibility={visibility}
+              hideComments={hideComments}
+            ></CommentCollection>
+          </Provider>
+        </CommentErrorBoundary>
+      </Suspense>
     </div>
   );
 }
