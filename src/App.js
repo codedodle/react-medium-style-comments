@@ -21,7 +21,7 @@ function App() {
   return (
     <div id="app" style={AppStyle}>
       <button
-        className="border-0 bg-green-400 p-2 rounded shadow text-white"
+        className="show-comments border-0 bg-green-400 p-2 rounded shadow text-white"
         onClick={() => setVisibility(!visibility)}
       >
         Show Comments

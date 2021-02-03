@@ -16,13 +16,6 @@ class CommentCollection extends React.Component {
     };
   }
 
-  componentDidMount() {
-    // this.setState({
-    //   comments: await getComments(),
-    //   loading: false,
-    // });
-  }
-
   componentDidUpdate() {
     if (this.props.visibility && !this.state.isLoaded && !this.props.loading) {
       this.loadComments();
@@ -31,34 +24,6 @@ class CommentCollection extends React.Component {
 
   async loadComments() {
     this.props.setLoading(true);
-    // this.setState({
-    //   loading: true,
-    // });
-
-    // async function getComments() {
-    //   let data = [];
-
-    //   for (let i = 0; i < 5; i++) {
-    //     data.push({
-    //       id: faker.random.number(),
-    //       body: faker.lorem.sentences(),
-    //       like_count: faker.random.number(),
-    //       comment_count: faker.random.number(),
-    //       user: {
-    //         id: faker.random.number(),
-    //         name: faker.name.firstName(),
-    //         timestamp: faker.date.past(),
-    //         avatar: `${faker.image.nature()}?random=${
-    //           Date.now() + Math.random()
-    //         }`,
-    //       },
-    //     });
-    //   }
-
-    //   return new Promise((resolve, reject) => {
-    //     setTimeout(() => resolve(data), 2500);
-    //   });
-    // }
 
     fetch('http://localhost:3001/comments')
       .then(res => res.json())
