@@ -101,10 +101,6 @@ let mapStateToProps = (state) => {
   };
 };
 
-// let mapDispatchToProps = bindActionCreators(function setLoading(status) {
-//   return { type: "SET_LOADING", payload: { data: status } };
-// }, dispatch);
-
 let mapDispatchToProps = (dispatch) => {
   return {
     setLoading: (status) =>
